@@ -52,15 +52,10 @@ public class hamburger {
 			} else {
 				i += 1;
 			}
-			//System.out.println(i + " " + sb1.length());
 		}
-		if(sb1.indexOf("1231") != -1) {
-			answer += 1;
+		if(sb1.indexOf("1231") != -1) { //프로그래머스 오류 {1, 2, 1, 2, 3, 1, 3, 1, 1, 2, 3, 1} 일때 3인데 2로 나와도 통과됨
+			answer += 1;				//3라인 추가함
 		}
-		if(sb1.equals("1231")) {
-			System.out.println("wef");
-		}
-		
 		
 		return answer;
 	}
