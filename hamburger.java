@@ -7,13 +7,10 @@ public class hamburger {
 	public static void main(String[] args) {
 		int[] ingredient = {1, 2, 1, 2, 3, 1, 3, 1, 1, 2, 3, 1};
 		System.out.println(solution5(ingredient));
-		
-		//0 1 2 3 4 5
-		//1 2 3 4
 	}
 	
 	
-	//solution5 성공 
+	//solution5 성공 + 프로그래머스에서 체크 안되는 반례 처리 가능하게 추가 
 	public static int solution5(int[] ingredient) {
 		int answer = 0;
 		Stack<Integer> stack = new Stack<>();
@@ -44,17 +41,15 @@ public class hamburger {
 				stack.pop();
 				stack.pop();
 				sb1.replace(i-3, i+1, "");
-				System.out.println(sb1);
 				i = i-3;
 				if(stack.isEmpty() == false) {
 					state = stack.peek();
-				}
+				} else {				//	프로그래머스 오류 {1, 2, 1, 2, 3, 1, 3, 1, 1, 2, 3, 1} 일때 3인데 2로 나와도 통과됨
+					state = 0;			//	1회 처리후 1, 2, 3, 1, 1, 2, 3, 1 이렇게 되고 2회 처리시에 제일 앞부터 1, 2, 3, 1	이 빠져나가는
+				}						//	이때 스택이 empty상태라 state값이 4인 상태로 되어서 이런 경우에 state를 0으로 만들고 루프 시작으로 돌아가야함.
 			} else {
 				i += 1;
 			}
-		}
-		if(sb1.indexOf("1231") != -1) { //프로그래머스 오류 {1, 2, 1, 2, 3, 1, 3, 1, 1, 2, 3, 1} 일때 3인데 2로 나와도 통과됨
-			answer += 1;				//3라인 추가함
 		}
 		
 		return answer;
